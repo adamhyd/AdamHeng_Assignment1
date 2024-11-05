@@ -7,12 +7,12 @@ const eventSchema = mongoose.Schema({
         availability: String
     }, //must use "available", "occupied", "maintenance", "cleaning"
     roomPrice: Number,
-    description: String,
-    start: {
+    roomDescription: String,
+    roomCheckInDetails: {
         date: String,
         time: String
     },
-    end: {
+    roomCheckOutDetails: {
         date: String,
         time: String
     }
