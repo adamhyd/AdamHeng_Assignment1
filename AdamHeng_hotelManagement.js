@@ -8,14 +8,14 @@ const rooms = [
 ]
 
 const cleaners = [
-    { cleanerID: '100'},
-    { cleanerID: '101'},
-    { cleanerID: '102'},
+    { cleanerID: '100', status: 'Busy'},
+    { cleanerID: '101', status: 'Available'},
+    { cleanerID: '102', status: 'Available'},
 ]
 
 module.exports = {
     rooms,
-    // Retrieves and returns details about a room. For example, the room id, floor, status, price, and description. 
+    // This getRoomDetails() function retieves and returns details about a room. (e.g. the room id, floor, status, price, and description.) 
     getRoomDetails(roomID) {
         const room = rooms.find(room => room.roomID === roomID);
         if (room) {
@@ -25,18 +25,25 @@ module.exports = {
             return `Room ${roomID} not found`;
         }
     },
-    // Assigns room cleaning service with the cleaner's ID and cleaning date for the cleaner.
+    // This assignRoomCleaningService() function assigns room cleaning service with the cleaner's ID and cleaning date for the cleaner.
     assignRoomCleaningService(roomID, cleanerID, cleaningDate) {
         const room = rooms.find(room => room.roomID === roomID);
+        const cleaner = cleaners.find(cleaner => cleaners.cleanerID === cleanerID);
+
+        if (!room) {
+            return `Room ${roomID} is not found.`;
+        }
 
         
     },
-    // Books a room for a guest
+    // This bookRoomForGuest() function books a room for a guest
     bookRoomForGuest(roomID, guestID) {
         const room = rooms.find(room => room.roomID === roomID);
+
         if (!room) {
-            return 'Room is not found.';
+            return `Room ${roomID} is not found.`;
         }
+
         if (room.status == 'Occupied') {
             return `Room ${roomID} is currently ${roomID.status}`;
         } else {
@@ -44,21 +51,37 @@ module.exports = {
         }
 
     },
-    // Returns the total cost of a room based on the number of nights the guest is staying in the room for.
+    // This calculateRoomCost() function returns the total cost of a room based on the number of nights the guest is staying in the room for.
     calculateRoomCost(roomID, nights) {
         const room = rooms.find(room => room.roomID === roomID);
 
+        if (!room) {
+            return `Room ${roomID} not found.`;
+        }
+
+        const totalRoomCost = room.pricePerNight * nights;
+        return `Total cost of Room ${roomID} for ${nights} nights is \$${totalRoomCost}`;
         
     },
-    // Updates the status of a room for guests to know. 
+    // This updateRoomStatus() function updates the status of a room.
     updateRoomStatus(roomID, status) {
         const room = rooms.find(room => room.roomID === roomID);
 
-        
+        if (!room) {
+            return `Room ${roomID} is not found.`;
+        }
+
+        room.status = status;
+        return `Room ${roomID} status has been updated to ${status}`;
     },
-    //
+    // This checkRoomStatus() function returns the status of the specified room.
     checkRoomStatus(roomID) {
         const room = rooms.find(room => room.roomID === roomID);
 
+        if (!room) {
+            return `Room ${roomID} is not found.`;
+        }
+
+        return `Room ${roomID} status is ${roomID.status}`;
     },
 }
