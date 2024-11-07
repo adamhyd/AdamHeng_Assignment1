@@ -1,10 +1,10 @@
 // DUMMY DATA FOR ROOMS
 const rooms = [
-    { roomID: '200', floor: '2', status: 'Available', pricePerNight: 250, description: 'Premium Twin Room', guestID: null, isBooked: true, cleaningSchedule: null, cleanedBy: {} }, //must have many data types and in the logic must use complex ways to use the different data types
-    { roomID: '201', floor: '6', status: 'Occupied', pricePerNight: 112, description: 'Standard Single Room', guestID: '500', isBooked: true, cleaningSchedule: null, cleanedBy: {} },
-    { roomID: '202', floor: '5', status: 'Maintenance', pricePerNight: 212, description: 'Standard Twin Room', guestID: null, isBooked: false , cleaningSchedule: null, cleanedBy: {} },
-    { roomID: '203', floor: '1', status: 'Available', pricePerNight: 900, description: 'Deluxe Suite with City View', guestID: null, isBooked: false, cleaningSchedule: null, cleanedBy: {} },
-    { roomID: '204', floor: '3', status: 'Occupied', pricePerNight: 400, description: 'Deluxe Double Room', guestID: '501', isBooked: true, cleaningSchedule: null, cleanedBy: {} },
+    { roomID: '200', floor: '2', status: 'Available', pricePerNight: 250, description: 'Premium Twin Room', guestID: null, isBooked: true, cleaningSchedule: {cleanerID : 100, cleaningDate: '01-07-2024'}}, //must have many data types and in the logic must use complex ways to use the different data types
+    { roomID: '201', floor: '6', status: 'Occupied', pricePerNight: 112, description: 'Standard Single Room', guestID: '500', isBooked: true, cleaningSchedule: null},
+    { roomID: '202', floor: '5', status: 'Maintenance', pricePerNight: 212, description: 'Standard Twin Room', guestID: null, isBooked: false , cleaningSchedule: {cleanerID: 100, cleaningDate: '03-07-2024'}}, //key: value pair with JSON object inside
+    { roomID: '203', floor: '1', status: 'Available', pricePerNight: 900, description: 'Deluxe Suite with City View', guestID: null, isBooked: false, cleaningSchedule: null},
+    { roomID: '204', floor: '3', status: 'Occupied', pricePerNight: 400, description: 'Deluxe Double Room', guestID: '501', isBooked: true, cleaningSchedule: null},
 ]
 
 //DUMMY DATA FOR CLEANERS
@@ -44,11 +44,16 @@ module.exports = {
             return `Cleaner ${cleanerID} is currently ${cleaner.status} and cannot be assigned to cleaning duty.`
         } 
 
-        if (room.cleaningSchedule === null) {
-            cleaner.status = 'Busy';
-            room.cleaningSchedule = {cleanerID, cleaningDate};
-            return `Cleaner ${cleanerID} has been assigned to clean Room ${roomID} on ${cleaningDate}.`;
+        //If room already has a scheduled cleaning service
+        if (room.cleaningSchedule !== null) {
+            return `Room ${roomID} already has a cleaning service scheduled, and therefore cannot assign Cleaner ${cleanerID} to Room ${roomID}.`
         }
+
+        //If room does not have assigned cleaning service
+        cleaner.status ='Busy';
+        room.cleaningSchedule = {cleanerID, cleaningDate};
+        console.log(`Cleaner ${cleanerID} has been assigned to clean Room ${roomID} on ${cleaningDate}.`);
+        console.log(`Updated Room ${roomID} details: `, room); //Shows updated table in the console.
     },
     // This bookRoomForGuest() function books a room for a guest under the conditions that the room is not occupied or under maintenance.
     bookRoomForGuest(roomID, guestID) {
