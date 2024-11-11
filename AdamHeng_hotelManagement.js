@@ -16,8 +16,11 @@ const cleaners = [
 
 module.exports = {
     rooms,
-    // 1. This function retrieveAllAvailableRooms() shows all the rooms that are currently available for guests to book.
+    // 1. This function shows all the rooms that are currently available for guests to book.
     retrieveAllAvailableRooms() {
+
+        console.log("======== Retrieving All Available Rooms For Guest ========");
+
         const availableRooms =[];
 
         rooms.forEach(room => {
@@ -37,11 +40,12 @@ module.exports = {
             return 'There are no rooms available for guests to book right now as all the rooms are currently unavailable.';
         }
     },
-    // 2. This assignRoomCleaningService() function assigns room cleaning service for selected room and will return with the selected roomID, cleanerID and cleaningDate.
-    // It will also parse the updated information into the 
+    // 2. This function assigns room cleaning service for selected room and will return with the selected roomID, cleanerID and cleaningDate. It will also parse the updated information into the 
     assignRoomCleaningService(roomID, cleanerID, cleaningDate) {
         const room = rooms.find(room => room.roomID === roomID);
         const cleaner = cleaners.find(cleaners => cleaners.cleanerID === cleanerID);
+
+        console.log("======== Assigning Room Cleaning Service ========");
 
 
         if (!room) {
@@ -67,9 +71,12 @@ module.exports = {
         console.log(`Updated Room ${roomID}\'s details:`);
         return room;  //Shows updated table in the console.
     },
-    // 3. This updateRoomStatus() function updates the status of a room and then displays the updated details of the room.
+    // 3. This function updates the status of a room and then displays the updated details of the room.
     updateRoomStatus(roomID, status) {
         const room = rooms.find(room => room.roomID === roomID);
+
+        console.log("======== Updating Room Status ========");
+
 
         if (!room) {
             return `Room ${roomID} could not be found because it does not exist.`;
@@ -82,9 +89,12 @@ module.exports = {
         room.status = status;
         return `Room ${roomID}\'s status has been updated to "${status}". \nUpdated Room ${roomID}\'s Details:\n${JSON.stringify(room, null, 2)}` ;
     },
-    // 4. This bookRoomForGuest() function books a room for a guest under the conditions that the room is not occupied or under maintenance.
+    // 4. This function books a room for a guest under the conditions that the room is not occupied or under maintenance.
     bookRoomForGuest(roomID, guestID) {
         const room = rooms.find(room => room.roomID === roomID);
+
+        console.log("======== Booking Room For Guest ========");
+
 
         if (!room) {
             return `Sorry, Room ${roomID} could not be found because it does not exist.`;
@@ -98,7 +108,7 @@ module.exports = {
             return `Success! The Room ${roomID}, ${room.description}, has been successfully booked for Guest ${guestID}.`;
         }
     },
-    // 5. This calculateRoomCost() function returns the total cost of a room based on the number of nights the guest is staying in the room for.
+    // 5. This function returns the total cost of a room based on the number of nights the guest is staying in the room for.
     calculateRoomCost(roomID, nights) {
         const room = rooms.find(room => room.roomID === roomID);
 
@@ -106,12 +116,16 @@ module.exports = {
             return `Room ${roomID} not found.`;
         }
 
+        console.log("======== Calculating Total Room Cost ========");
+
         const totalRoomCost = room.pricePerNight * nights;
         return `The total cost of Room ${roomID} for ${nights} nights will be \$${totalRoomCost}.`;
         
     },
-    // 6. This checkRoomStatus() function returns the status of the specified room.
+    // 6. This function returns the status of the specified room.
     checkRoomStatus(roomID) {
+        console.log("======== Checking Room Status ========");
+
         const room = rooms.find(room => room.roomID === roomID);
 
         if (!room) {
@@ -120,10 +134,11 @@ module.exports = {
 
         return `Room ${roomID}\'s status is currently "${room.status}".`;
     },
-    // 7. This getSpecificRoomDetails() function retieves and returns details about a specific room. (e.g. the room id, floor, status, price, and description.) 
+    // 7. This function retieves and returns details about a specific room. (e.g. the room id, floor, status, price, and description.) 
     getSpecificRoomDetails(roomID) {
         const room = rooms.find(room => room.roomID === roomID);
         if (room) {
+            console.log("======== Getting Specific Room Details ========");
             console.log(`Here are the details of Room ${roomID}:`);
             return room;
         } else {
