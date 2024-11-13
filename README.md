@@ -1,12 +1,78 @@
 # Assignment 1
+## Hotel Management System
+This node module provides functionalities for managing a hotel's room availability, room cleaning schedules, bookings for guests, and billing for rooms based on number of nights.
 
-You will only need one file, ie, your node module, for this assignment.
+## Assignment Overview
+The ```AdamHeng_hotelManagement.js``` module has 7 functions to help hotel staff manage room statuses, retrieve room details, assign cleaners to a room, book rooms for guests, and calucalte room costs.
 
-In this readme file, describe how to use your node module. It could be similar to **app.js** from Lab2, where you call some functions in your node module and display the output. Describe how to setup your node module, if any. Describe how to call the functions, what parameters required and so on.
+## Features
+```
+1. Retrieve All Available Rooms
+2. Assign Cleaning Service To Rooms
+3. Update Room Status
+4. Book A Room For A Guest
+5. Calculate Cost Of Room
+6. Check A Room's Status
+7. Get Details Of A Specific Room
+```
 
-You can press **Ctrl+Shift+V** in this file in Visual Studio Code to see a live preview of the readme file.
+## Setup
+To use the hotel management module, import it into your application file as shown: 
+```
+const hotelManagement = require("./AdamHeng_hotelManagement.js");
+```
 
-For some tips in formatting text in readme file, refer to https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+## Functions
+**1. retrieveAllAvailableRooms**
+```
+hotelManagement.retrieveAllAvailableRooms();
 
-# References
-Provide the references that you have used to support your assignment. 
+Description: Fetches all rooms that are available for guests to book.
+```
+
+**2. assignRoomCleaningService**
+```
+hotelManagement.assignRoomCleaningService(roomID, cleanerID, cleaningDate);
+
+Description: Assigns a cleaner to a specific room by roomID and cleanerID.
+```
+
+**3. updateRoomStatus**
+```
+hotelManagement.updateRoomStatus(roomID, 'Available');
+
+Description: Updates room status.
+```
+
+**4. bookRoomForGuest**
+```
+hotelManagement.bookRoomForGuest(roomID, guestID);
+
+Description: Books a room for a guest.
+```
+
+**5. calculateRoomCost**
+```
+hotelManagement.calculateRoomCost(roomID, nights);
+
+Description: Calculates total cost for a guest based on the room price and the number of nights.
+```
+
+**6. checkRoomStatus**
+```
+hotelManagement.checkRoomStatus(roomID);
+
+Description: Retrieves the current status of a specific room.
+```
+
+**7. getSpecificRoomDetails**
+```
+hotelManagement.getSpecificRoomDetails(roomID);
+
+Description: Retrieves details of a specific room.
+```
+
+## References
+Using let - https://www.w3schools.com/js/js_let.asp
+
+Using find - https://www.w3schools.com/jsref/jsref_find.asp
