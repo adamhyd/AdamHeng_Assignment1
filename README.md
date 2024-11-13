@@ -26,51 +26,45 @@ const hotelManagement = require("./AdamHeng_hotelManagement.js");
 **1. retrieveAllAvailableRooms**
 ```
 hotelManagement.retrieveAllAvailableRooms();
+```
 
 Description: Fetches all rooms that are available for guests to book.
-```
 
 **2. assignRoomCleaningService**
 ```
 hotelManagement.assignRoomCleaningService(roomID, cleanerID, cleaningDate);
-
-Description: Assigns a cleaner to a specific room by roomID and cleanerID.
 ```
+Description: Assigns a cleaner to a specific room by roomID and cleanerID.
 
 **3. updateRoomStatus**
 ```
 hotelManagement.updateRoomStatus(roomID, 'Available');
-
-Description: Updates room status.
 ```
+Description: Updates room status.
 
 **4. bookRoomForGuest**
 ```
 hotelManagement.bookRoomForGuest(roomID, guestID);
-
-Description: Books a room for a guest.
 ```
+Description: Books a room for a guest.
 
 **5. calculateRoomCost**
 ```
 hotelManagement.calculateRoomCost(roomID, nights);
-
-Description: Calculates total cost for a guest based on the room price and the number of nights.
 ```
+Description: Calculates total cost for a guest based on the room price and the number of nights.
 
 **6. checkRoomStatus**
 ```
 hotelManagement.checkRoomStatus(roomID);
-
-Description: Retrieves the current status of a specific room.
 ```
+Description: Retrieves the current status of a specific room.
 
 **7. getSpecificRoomDetails**
 ```
 hotelManagement.getSpecificRoomDetails(roomID);
-
-Description: Retrieves details of a specific room.
 ```
+Description: Retrieves details of a specific room.
 
 ## References
 Using let - https://www.w3schools.com/js/js_let.asp
