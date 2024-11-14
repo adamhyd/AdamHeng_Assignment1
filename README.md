@@ -68,5 +68,3 @@ Description: Retrieves details of a specific room.
 
 ## References
 Using let - https://www.w3schools.com/js/js_let.asp
-
-Using find - https://www.w3schools.com/jsref/jsref_find.asp
